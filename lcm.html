@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCM</title>
+</head>
+<body>
+    <h1>Find the Least Common Multiple of any set of numbers!</h1>
+    <p>Type any set of numbers below with a space separating each:</p>
+    <input type="text" id="userInput" placeholder="Example: 3 5 8 12">
+    <button id="submit">Get LCM</button>
+    <h2 id="output">LCM = </h2>
+    
+    <script>
+
+        var ints = [];
+        var product = 1;
+        var remainderSum = 0;
+        var button = document.getElementById("submit");
+        var userInput = document.getElementById("userInput");
+        var printAnswer = document.getElementById("output");
+
+        function lcm() {
+            for (i = 0; i < ints.length; i++) {
+                product *= ints[i];
+            }
+
+            for (i = 1; i <= product; i++) {
+                ints.forEach(modulus);
+
+                function modulus(item) {
+                    remainderSum += i%item;
+                }
+                
+                if (remainderSum === 0) {
+                    printAnswer.textContent = "LCM = " + i;
+                    break;
+                }
+                else {
+                    remainderSum = 0;
+                }
+                
+            }
+        }
+
+        button.addEventListener("click", function(){
+            ints = userInput.value.split(" ");
+            lcm();
+        })
+        
+
+    </script>
+</body>
+</html>
