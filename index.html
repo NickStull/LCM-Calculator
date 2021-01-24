@@ -14,29 +14,23 @@
     
     <script>
 
-        var ints = [];
-        var product = 1;
         var button = document.getElementById("submit");
         var userInput = document.getElementById("userInput");
         var printAnswer = document.getElementById("output");
 
-        function lcm() {
-             for (let i = ints[0]; i < product; i += ints[0]) {
+        button.onclick = () => {
+            let ints = userInput.value.split(" ").map(Number);
+                ints.sort((a, b) => b - a);
+            let product = ints.reduce((a, b) => a * b);
+
+            for (let i = ints[0]; i < product; i += ints[0]) {
                  const evenDiv = ints.filter(num => i%num === 0);
                  if (evenDiv.length === ints.length){
                     printAnswer.textContent = "LCM = " + i;
                     break
                  }
              }
-        }
-
-        button.addEventListener("click", function(){
-            ints = userInput.value.split(" ").map(Number);
-            ints.sort((a, b) => b - a);
-            product = ints.reduce((a, b) => a * b);
-            lcm();
-        })
-        
+        };
 
     </script>
 </body>
