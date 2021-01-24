@@ -16,36 +16,24 @@
 
         var ints = [];
         var product = 1;
-        var remainderSum = 0;
         var button = document.getElementById("submit");
         var userInput = document.getElementById("userInput");
         var printAnswer = document.getElementById("output");
 
         function lcm() {
-            for (i = 0; i < ints.length; i++) {
-                product *= ints[i];
-            }
-
-            for (i = 1; i <= product; i++) {
-                ints.forEach(modulus);
-
-                function modulus(item) {
-                    remainderSum += i%item;
-                }
-                
-                if (remainderSum === 0) {
+             for (let i = ints[0]; i < product; i += ints[0]) {
+                 const evenDiv = ints.filter(num => i%num === 0);
+                 if (evenDiv.length === ints.length){
                     printAnswer.textContent = "LCM = " + i;
-                    break;
-                }
-                else {
-                    remainderSum = 0;
-                }
-                
-            }
+                    break
+                 }
+             }
         }
 
         button.addEventListener("click", function(){
-            ints = userInput.value.split(" ");
+            ints = userInput.value.split(" ").map(Number);
+            ints.sort((a, b) => b - a);
+            product = ints.reduce((a, b) => a * b);
             lcm();
         })
         
