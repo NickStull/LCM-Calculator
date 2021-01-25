@@ -19,17 +19,26 @@
         var printAnswer = document.getElementById("output");
 
         button.onclick = () => {
-            let ints = userInput.value.split(" ").map(Number);
-                ints.sort((a, b) => b - a);
-            let product = ints.reduce((a, b) => a * b);
-
-            for (let i = ints[0]; i < product; i += ints[0]) {
-                 const evenDiv = ints.filter(num => i%num === 0);
-                 if (evenDiv.length === ints.length){
-                    printAnswer.textContent = "LCM = " + i;
-                    break
-                 }
-             }
+            if (/^[0-9 ]+$/.test(userInput.value)) {
+                let ints = userInput.value.split(" ").filter(Number);
+                    console.log(ints)
+                    ints = ints.map(Number);
+                    console.log(ints)
+                    ints.sort((a, b) => b - a);
+                let product = ints.reduce((a, b) => a * b);
+    
+                for (let i = ints[0]; i <= product; i += ints[0]) {
+                    const evenDiv = ints.filter(num => i%num === 0);
+   
+                    if (evenDiv.length === ints.length){
+                        printAnswer.textContent = "LCM = " + i;
+                        break;
+                    }
+                }
+            }
+            else {
+                alert("Please use ONLY numbers with a space to separate each");
+            }
         };
 
     </script>
