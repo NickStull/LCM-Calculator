@@ -14,33 +14,33 @@
     
     <script>
 
-        var button = document.getElementById("submit");
-        var userInput = document.getElementById("userInput");
-        var printAnswer = document.getElementById("output");
+        const button = document.getElementById("submit");
+        const userInput = document.getElementById("userInput");
+        const printAnswer = document.getElementById("output");
 
         button.onclick = () => {
-            if (/^[0-9 ]+$/.test(userInput.value)) {
-                let ints = userInput.value.split(" ").filter(Number);
-                    console.log(ints)
-                    ints = ints.map(Number);
-                    console.log(ints)
-                    ints.sort((a, b) => b - a);
-                let product = ints.reduce((a, b) => a * b);
+            let ints = userInput.value.split(" ").map(Number);
+                ints.sort((a, b) => b - a);
+            let product = ints.reduce((a, b) => a * b);
     
-                for (let i = ints[0]; i <= product; i += ints[0]) {
-                    const evenDiv = ints.filter(num => i%num === 0);
-   
-                    if (evenDiv.length === ints.length){
-                        printAnswer.textContent = "LCM = " + i;
-                        break;
-                    }
+            for (let i = ints[0]; i <= product; i += ints[0]) {
+                const evenDiv = ints.filter(num => i%num === 0);
+    
+                if (evenDiv.length === ints.length){
+                    printAnswer.textContent = "LCM = " + i;
+                    break;
                 }
-            }
-            else {
-                alert("Please use ONLY numbers with a space to separate each");
             }
         };
 
     </script>
 </body>
 </html>
+
+<!-- // const lcm = (...arr) => {
+    //     const gcd = (x, y) => (!y ? x : gcd(y, x % y));
+    //     const _lcm = (x, y) => (x * y) / gcd(x, y);
+    //     return [...arr].reduce((a, b) => _lcm(a, b));
+    // };
+
+    // console.log(lcm(...[3, 5, 8, -12])); -->
